@@ -1,0 +1,25 @@
+  private bool checkchange = false;
+        private void ordersDataGridView_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (this.ordersDataGridView.Columns[e.ColumnIndex].HeaderText == "OrderDate")
+            {
+                Rectangle r = this.ordersDataGridView.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, false);
+                r = this.ordersDataGridView.RectangleToScreen(r);
+                this.dateTimePicker1.Location = this.RectangleToClient(r).Location;
+                this.dateTimePicker1.Size = r.Size;
+                this.checkchange = true;
+                this.dateTimePicker1.Text = this.ordersDataGridView.CurrentCell.Value.ToString();
+                this.checkchange = false;
+                this.dateTimePicker1.Visible = true;
+            }
+            else
+            {
+                this.dateTimePicker1.Visible = false;
+            }
+        }
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            if (checkchange) return;
+            this.ordersDataGridView.CurrentCell.Value = this.dateTimePicker1.Text;
+        }
+    }
