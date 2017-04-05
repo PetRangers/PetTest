@@ -1,0 +1,32 @@
+    'ToDo 表單繼承
+     
+    'ToDo FrmLogon FrmMain
+    
+    'ToDo ClsMember
+          - CreateUser
+          - ValidateUser
+         
+     //ToDo ClsProducts  - CRUD
+         // - GetProducts     
+         // - GetCategoryList
+         // - GetProductsByCategoryID
+         // - SearchProductsByName / Price .....
+         // - InsertProduct /....UpdateProducts
+          
+    
+
+DataView dv = dataSet1.Products.DefaultView;
+            dv.Sort = "ProductName";
+            int pos = dv.Find(textBox1.Text);
+            if (pos==1)
+            {
+                MessageBox.Show($"找不到ProductName={textBox1.Text}");
+                textBox1.SelectAll();
+                textBox1.Focus();
+            }
+            else
+            {
+                bindingSource1.Position = pos;
+                dataGridView1.FirstDisplayedScrollingRowIndex = pos;
+            }
+   
